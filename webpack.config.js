@@ -1,6 +1,6 @@
-var webpack = require('webpack'),
-    WebpackDevServer = require('webpack-dev-server'),
-    path = require('path');
+var webpack = require('webpack')
+  , WebpackDevServer = require('webpack-dev-server')
+  , path = require('path');
 
 module.exports = {
   context: __dirname,
@@ -12,9 +12,7 @@ module.exports = {
       stats: { colors: true }
     },
   },
-  entry: [
-      path.join(__dirname, 'resources/js/app.js'),
-  ],
+  entry: path.join(__dirname, 'resources/js/app.js'),
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/dist/',
