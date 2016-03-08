@@ -1,9 +1,18 @@
 var webpack = require('webpack')
+  , WebpackDevServer = require('webpack-dev-server')
   , path = require('path')
   , BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
   context: __dirname,
+  devServer: {
+    hot: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000,
+      stats: { colors: true }
+    },
+  },
   entry: path.join(__dirname, 'resources/js/app.js'),
   output: {
     path: path.join(__dirname, 'public/dist/'),
@@ -38,9 +47,7 @@ module.exports = {
     new BrowserSyncPlugin({
       host: 'localhost',
       port: 3000,
-      server: {
-        baseDir: path.join(__dirname + '/public/'),
-      }
+      proxy: 'http://localhost:8080/',
     }),
   ],
   noParse: [
