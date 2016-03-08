@@ -18,19 +18,19 @@ module.exports = {
     loaders: [
       {
         test: /\.less$/,
-        loader: 'style-loader!css-loader!less-loader',
+        loader: 'style!css!less',
       },
       {
         test: /\.(jpe?g|gif|png|ico)$/,
-        loader: 'url-loader?prefix=img/&limit=5000',
+        loader: 'url?prefix=img/&limit=5000',
       },
       {
         test: /\.woff2?$/,
-        loader: 'url-loader?prefix=font/&limit=5000',
+        loader: 'url?prefix=font/&limit=5000',
       },
       {
         test: /\.(eot|ttf|svg)$/,
-        loader: 'file-loader?prefix=font/',
+        loader: 'file?prefix=font/',
       },
     ],
   },
