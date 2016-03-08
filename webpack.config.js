@@ -1,8 +1,17 @@
 var webpack = require('webpack'),
+    WebpackDevServer = require('webpack-dev-server'),
     path = require('path');
 
 module.exports = {
   context: __dirname,
+  devServer: {
+    hot: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000,
+      stats: { colors: true }
+    },
+  },
   entry: [
       path.join(__dirname, 'resources/js/app.js'),
   ],
