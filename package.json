@@ -13,7 +13,8 @@
     "webpack": "^1.12.14"
   },
   "scripts": {
-    "watch": "./node_modules/.bin/webpack -p --progress --colors --devtool sourcemap --hot --watch"
+    "watch": "./node_modules/.bin/webpack -p --progress --colors --devtool sourcemap --hot --watch",
+    "server": "./node_modules/.bin/webpack-dev-server --content-base public"
   },
   "devDependencies": {
     "webpack-dev-server": "^1.14.1"
