@@ -1,9 +1,11 @@
-var webpack = require('webpack')
-  , path = require('path');
+var webpack = require('webpack'),
+    path = require('path');
 
 module.exports = {
   context: __dirname,
-  entry: path.join(__dirname, 'resources/js/app.js'),
+  entry: [
+      path.join(__dirname, 'resources/js/app.js'),
+  ],
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/dist/',
@@ -16,7 +18,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.less$/,
+        test: /\.lesss$/,
         loader: 'style-loader!css-loader!less-loader',
       },
       {
