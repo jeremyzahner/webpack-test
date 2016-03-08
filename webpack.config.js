@@ -1,18 +1,19 @@
 var webpack = require('webpack')
-  , path = require('path');
+  , path = require('path')
+  , BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
   context: __dirname,
   entry: path.join(__dirname, 'resources/js/app.js'),
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'public/dist/'),
     publicPath: '/dist/',
     filename: 'main.js',
     chunkFilename: '[hash]/js/[id].js',
     hotUpdateMainFilename: '[hash]/update.json',
     hotUpdateChunkFilename: '[hash]/js/[id].update.js',
   },
-  recordsOutputPath: path.join(__dirname, 'dist/records.json'),
+  recordsOutputPath: path.join(__dirname, 'public/dist/records.json'),
   module: {
     loaders: [
       {
@@ -33,4 +34,17 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 3000,
+      server: {
+        baseDir: path.join(__dirname + '/public/'),
+      }
+    }),
+  ],
+  noParse: [
+    path.join(__dirname + '/node_modules/jquery/**/*.js'),
+  ],
+  cache: true,
 };
