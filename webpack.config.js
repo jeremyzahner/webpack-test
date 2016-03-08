@@ -20,12 +20,16 @@ module.exports = {
         loader: 'style-loader!css-loader!less-loader',
       },
       {
-        test: /\.jpg$/,
+        test: /\.(jpe?g|gif|png|ico)$/,
         loader: 'url-loader?prefix=img/&limit=5000',
       },
       {
-        test: /\.gif$/,
-        loader: 'url-loader?prefix=img/&limit=5000',
+        test: /\.woff2?$/,
+        loader: 'url-loader?prefix=font/&limit=5000',
+      },
+      {
+        test: /\.(eot|ttf|svg)$/,
+        loader: 'file-loader?prefix=font/',
       },
     ],
   },
