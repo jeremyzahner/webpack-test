@@ -31,10 +31,7 @@ module.exports = {
     loaders: [
       {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract(
-          'css?sourceMap!' +
-          'less?sourceMap'
-        )
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
       },
       {
         test: /\.(jpe?g|gif|png|ico)$/,
@@ -59,7 +56,7 @@ module.exports = {
     {
       reload: false
     }),
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('[name].css'),
     new BowerWebpackPlugin({
       excludes: /.*\.less/
     }),
