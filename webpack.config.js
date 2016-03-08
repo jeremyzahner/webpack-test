@@ -1,7 +1,8 @@
 var webpack = require('webpack')
   , WebpackDevServer = require('webpack-dev-server')
   , path = require('path')
-  , BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+  , BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+  , BowerWebpackPlugin = require('bower-webpack-plugin');
 
 module.exports = {
   context: __dirname,
@@ -48,6 +49,13 @@ module.exports = {
       host: 'localhost',
       port: 3000,
       proxy: 'http://localhost:8080/',
+    }),
+    new BowerWebpackPlugin({
+      excludes: /.*\.less/
+    }),
+    new webpack.ProvidePlugin({
+      $:      "jquery",
+      jQuery: "jquery"
     }),
   ],
   noParse: [
