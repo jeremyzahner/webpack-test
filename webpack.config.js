@@ -2,7 +2,8 @@ var webpack = require('webpack')
   , WebpackDevServer = require('webpack-dev-server')
   , path = require('path')
   , BrowserSyncPlugin = require('browser-sync-webpack-plugin')
-  , ExtractTextPlugin = require('extract-text-webpack-plugin');
+  , ExtractTextPlugin = require('extract-text-webpack-plugin')
+  , BowerWebpackPlugin = require('bower-webpack-plugin');
 
 module.exports = {
   context: __dirname,
@@ -58,7 +59,14 @@ module.exports = {
     {
       reload: false
     }),
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles.css'),
+    new BowerWebpackPlugin({
+      excludes: /.*\.less/
+    }),
+    new webpack.ProvidePlugin({
+      $:      "jquery",
+      jQuery: "jquery"
+    }),
   ],
   noParse: [
     path.join(__dirname + '/node_modules/jquery/**/*.js'),

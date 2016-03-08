@@ -1,5 +1,7 @@
 require('../less/app.less');
 
+require('bootstrap');
+
 console.log('something');
 
 var $ = require('jquery');
