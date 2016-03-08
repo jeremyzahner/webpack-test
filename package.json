@@ -14,5 +14,8 @@
   },
   "scripts": {
     "watch": "./node_modules/.bin/webpack -p --progress --colors --devtool sourcemap --hot --watch"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^1.14.1"
   }
 }
