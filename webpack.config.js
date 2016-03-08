@@ -1,11 +1,13 @@
 var webpack = require('webpack')
   , WebpackDevServer = require('webpack-dev-server')
   , path = require('path')
-  , BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+  , BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+  , ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: __dirname,
   devServer: {
+    contentBase: path.join(__dirname, 'public/'),
     hot: true,
     watchOptions: {
       aggregateTimeout: 300,
@@ -23,11 +25,15 @@ module.exports = {
     hotUpdateChunkFilename: '[hash]/js/[id].update.js',
   },
   recordsOutputPath: path.join(__dirname, 'public/dist/records.json'),
+  devtool: 'inline-source-map',
   module: {
     loaders: [
       {
-        test: /\.lesss$/,
-        loader: 'style-loader!css-loader!less-loader',
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract(
+          'css?sourceMap!' +
+          'less?sourceMap'
+        )
       },
       {
         test: /\.(jpe?g|gif|png|ico)$/,
@@ -47,10 +53,12 @@ module.exports = {
     new BrowserSyncPlugin({
       host: 'localhost',
       port: 3000,
-      server: {
-        baseDir: path.join(__dirname + '/public/'),
-      }
+      proxy: 'http://localhost:8080/'
+    },
+    {
+      reload: false
     }),
+    new ExtractTextPlugin('styles.css')
   ],
   noParse: [
     path.join(__dirname + '/node_modules/jquery/**/*.js'),
